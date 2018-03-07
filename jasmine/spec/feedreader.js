@@ -23,7 +23,8 @@ $(function() {
          */
         it('are defined', function() {
             expect(allFeeds).toBeDefined();
-            expect(allFeeds instanceof Array).toBeTruthy();
+            expect(allFeeds).toEqual(jasmine.any(Array));
+//            expect(allFeeds instanceof Array).toBeTruthy(); //Code review comment
             expect(allFeeds.length).not.toBe(0);
         });
 
@@ -46,7 +47,8 @@ $(function() {
          it('have names defined', function(){
             allFeeds.forEach(function(feed){
                 expect(feed.name).toBeDefined();
-                expect(typeof feed.name).toBe("string");
+                //expect(typeof feed.name).toBe("string"); code review comment
+                expect(feed.name).toEqual(jasmine.any(String));
                 expect(feed.name).not.toBe('');
             });
          });
@@ -71,15 +73,12 @@ $(function() {
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
-          it('is visible when clicked', function(){
+          it('is toggles visibility when clicked', function(){
             menuIcon.click();
             expect(body.className).not.toContain("menu-hidden");
-        });
-
-          it("is not visible when clicked again", function(){
             menuIcon.click();
             expect(body.className).toContain("menu-hidden");
-          });
+        });
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
