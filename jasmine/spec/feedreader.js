@@ -66,18 +66,21 @@ $(function() {
          * hiding/showing of the menu element.
          */
          it('is hidden by default', function() {
-            expect(body.className).toContain("menu-hidden");
+            expect($(document.body).hasClass("menu-hidden")).toBeTruthy();
+            //expect(body.className).toContain("menu-hidden");Review comment
          });
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
-          it('is toggles visibility when clicked', function(){
+          it('toggles visibility when clicked', function(){
             menuIcon.click();
-            expect(body.className).not.toContain("menu-hidden");
+            //expect(body.className).not.toContain("menu-hidden");review comment
+            expect($(document.body).hasClass("menu-hidden")).not.toBeTruthy();
             menuIcon.click();
-            expect(body.className).toContain("menu-hidden");
+            //expect(body.className).toContain("menu-hidden");review comment
+            expect($(document.body).hasClass("menu-hidden")).toBeTruthy();
         });
     });
 
@@ -98,7 +101,8 @@ $(function() {
         });
 
         it("has atleast one entry", function(done){
-            var numEntries = document.querySelector(".feed").getElementsByClassName("entry").length;
+            //var numEntries = document.querySelector(".feed").getElementsByClassName("entry").length;//review comment
+            var numEntries = $(".feed .entry").length;
             expect(numEntries).toBeGreaterThan(0);
             done();
         });
